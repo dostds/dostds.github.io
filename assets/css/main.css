@@ -41,6 +41,7 @@
 
 	ol, ul {
 		list-style: none;
+		
 	}
 
 	blockquote, q {
@@ -2494,6 +2495,7 @@
 		list-style: disc;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
+		width: auto;
 	}
 
 		ul li {

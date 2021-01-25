@@ -101,22 +101,88 @@
 				<section id="main" class="container">
 					<header>
 						<h2>Hilos y Sincronización</h2>
-						<p>A generic page for every non-generic situation.</p>
+						<!-- <p>A generic page for every non-generic situation.</p>Main -->
 					</header>
 					<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-						<h3>This is a subheading</h3>
-						<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+						<h3>Paralelismo e Hilos en Java</h3>
+							<p  align="justify">El paralelismo es la ejecución simultánea de dos o más tareas. Se considera una propiedad del hardware, 
+								ya que requiere recursos físicos para ejecutar cada tarea simultáneamente, y su objetivo se basa en realizar una tarea en el menor tiempo posible.
+							</p>
+								<p align="justify"> El paralelismo acelera la ejecución de una tarea dividiéndola en computaciones independientes y ejecutándola sobre hardware capaz de realizar computaciones simultáneas, 
+									como por ejemplo un procesador con varios núcleos. Pero cuando ejecutamos una tarea paralelizada en múltiples ordenadores, en vez de en los múltiples cores de un solo ordenador, 
+									decimos que la computación paralela es distribuída. Por ejemplo, cada búsqueda en Google se ejecuta simultáneamente en cientos de ordenadores,
+									cada uno de los cuales busca al mismo tiempo en un subconjunto del índice del web.
+								</p>
+									<div align="center"><img src="IMAGENES_GRUPO/GRUPO 1/paralelismo.png"
+										width="700"
+										height="400">
+									</div>
+
 						<div class="row">
 							<div class="row-6 row-12-mobilep">
-								<h3>And now a subheading</h3>
-								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+								<h3>¿Qué son los hilos?</h3>
+								<p align="justify">Un hilo es un flujo de control dentro de un programa. Creando varios hilos podremos realizar varias tareas simultáneamente. 
+									Cada hilo tendrá sólo un contexto de ejecución (contador de programa, pila de ejecución).
+								</p>
 							</div>
 							<div class="row-6 row-12-mobilep">
-								<h3>And another subheading</h3>
-								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+								<h3>Creacion de Hilos</h3>
+								<p align="justify">En Java los hilos están encapsulados en la clase Thread. Para crear un hilo tenemos dos posibilidades:
+									Heredar de Thread redefiniendo el método run().
+									Crear una clase que implemente la interfaz Runnable que nos obliga a definir el método run().
+													
+									En ambos casos debemos definir un método run() que será el que contenga el código del hilo. Desde dentro de este método podremos llamar a cualquier otro método de cualquier objeto, 
+									pero este método run() será el método que se invoque cuando iniciemos la ejecución de un hilo. El hilo terminará su ejecución cuando termine de ejecutarse este método run(). 
+									Para crear nuestro hilo mediante herencia haremos lo siguiente: 
+								</p>
+								<div align="center"><img src="IMAGENES_GRUPO/GRUPO 1/hilos.png"
+									width="700"
+									height="400">
+								</div>
 							</div>
 						</div>
+						
+						<div class="row">
+							<div class="row-6 row-12-mobilep">
+								<h3>Candado de uso exclusivo</h3>
+								<p align="justify">Cuando se utiliza la palabra clave synchronized se esta indicando una zona restringida para el uso de Threads, 
+									esta zona restringida para efectos prácticos puede ser considerada un candado (“lock”) sobre la instancia del objeto en cuestión.
+								</p>
+							</div>
+							<div class="row-6 row-12-mobilep">
+								<h3>Candado</h3>
+								<p align="justify">Todos los objetos (incluidos los arrays) tienen un “candado” (lock). 
+									Solo un hilo puede tener bloqueado el candado de un objeto en un momento dado. 
+									Podrá bloquearlo más de una vez antes de liberarlo y solo quedará completamente libre cuando el hilo lo libere tantas veces como lo ha obtenido.  
+									Si  un hilo intenta obtener un candado ocupado, quedará suspendida hasta que éste se libere y pueda obtenerlo. No se puede acceder directamente a los candados..
+								</p>
+
+								<h3>Ejemplo de sincronizacion candado de uso exclusivo</h3>
+
+								<iframe width="600" height="300" src="https://www.youtube.com/embed/sHwFkximn2E" frameborder="0"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="row-6 row-12-mobilep">
+								<h3>Sincronizacion Java CandadoRW</h3>
+								<p align="justify">La mayoría de los elementos de java.util.concurrent no utilizan synchronized. Entonces, 
+									¿cómo logran ser seguros a hilos? Pues utilizan la nueva interfaz Lock, que tiene semántica similar a synchronized; 
+									pero ofrece alto desempeño y características adicionales, tales como la habilidad de interrumpir un hilo que está esperando por un bloqueo, 
+									esperar un bloqueo por un tiempo específico, preguntar por la disponibilidad de un bloqueo, etc.
+								</p>
+							</div>
+							<div class="row-6 row-12-mobilep">
+								<h3>Ejemplo de sincronizacion candado RW</h3>
+								<iframe width="600" height="300" src="https://www.youtube.com/embed/hcfUP8cc03M" frameborder="0" allow="accelerometer; autoplay;
+									clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+								</iframe>
+
+							</div>
+						</div>
+
 					</div>
 				</section>
 

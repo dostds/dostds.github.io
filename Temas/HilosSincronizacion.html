@@ -187,15 +187,14 @@
 							<div class="row-6 row-12-mobilep">
 								<br>
 								<h3>Sincronizacion Java Barrera</h3>
-								<br>
-
-							<p align="justify">Cuando trabajamos con hilos en Java, nos puede interesar que varios hilos comiencen su ejecución a la vez o nos puede interesar esperar a 
+								
+								<p align="justify">Cuando trabajamos con hilos en Java, nos puede interesar que varios hilos comiencen su ejecución a la vez o nos puede interesar esperar a 
 								que terminen todos los hilos que hemos lanzado previamente. Esperar por un solo hilo no es problema, ese hilo tiene el método join() que hace exactamente eso, esperar a que termine </p>
 							
-							<div align="center"><img src="IMAGENES_GRUPO/GRUPO 1/Barrera 1.png"
-										width="500"
-										height="300"></div>
-								<br>
+								<div align="center"><img src="IMAGENES_GRUPO/GRUPO 1/Barrera 1.png"
+											width="500"
+											height="300"></div>
+									<br>
 
 								<p align="justify">sin embargo, esperar por muchos hilos nos implicaría hacer muchas llamadas join(), una por cada hilo arrancado.
 									Para arrancar varios hilos a la vez o para esperar que todos ellos terminen, java nos ofrece la clase CyclicBarrier. 
